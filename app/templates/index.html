@@ -1,0 +1,47 @@
+<html>
+<title>
+</title>
+<script>
+    function f() {
+        var user_login = document.getElementById("login").value;
+        var user_pass = document.getElementById("password").value;
+
+        var url = "http://127.0.0.1:5000/test"
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        bd = {
+            'login': user_login,
+            'password': user_pass
+        }
+
+        var data = JSON.stringify(bd);
+        xhr.send(data);
+
+        document.getElementsByTagName('body').innerHTML = xhr.response
+    }
+</script>
+<body>
+    <table>
+        <tr>
+            <th>
+                <input type="text" id="login" />
+            </th>
+            <th>
+                Login
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <input type="text" id="password" />
+            </th>
+            <th>
+                Password
+            </th>
+        </tr>
+    </table>
+
+    <input type="button" id="sign_in" value="Login" onclick="f()"/>
+</body>
+</html>
